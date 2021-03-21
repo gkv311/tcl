@@ -1,3 +1,6 @@
+#ifdef TCL_WIDE_INT_IS_LONG
+#undef TCL_WIDE_INT_IS_LONG /// TODO WASM
+#endif
 /*
  * tcl.h --
  *

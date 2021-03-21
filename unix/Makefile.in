@@ -710,7 +710,8 @@ SRCS = $(GENERIC_SRCS) $(TOMMATH_SRCS) $(UNIX_SRCS) $(NOTIFY_SRCS) \
 
 all: binaries libraries doc packages
 
-binaries: ${LIB_FILE} ${TCL_EXE}
+#binaries: ${LIB_FILE} ${TCL_EXE}
+binaries: ${LIB_FILE}
 
 libraries:
 
@@ -892,8 +893,6 @@ install-binaries: binaries
 	@echo "Installing $(LIB_FILE) to $(DLL_INSTALL_DIR)/"
 	@@INSTALL_LIB@
 	@chmod 555 "$(DLL_INSTALL_DIR)/$(LIB_FILE)"
-	@echo "Installing ${TCL_EXE} as $(BIN_INSTALL_DIR)/tclsh$(VERSION)${EXE_SUFFIX}"
-	@$(INSTALL_PROGRAM) ${TCL_EXE} "$(BIN_INSTALL_DIR)/tclsh$(VERSION)${EXE_SUFFIX}"
 	@echo "Installing tclConfig.sh to $(CONFIG_INSTALL_DIR)/"
 	@$(INSTALL_DATA) tclConfig.sh "$(CONFIG_INSTALL_DIR)/tclConfig.sh"
 	@echo "Installing tclooConfig.sh to $(CONFIG_INSTALL_DIR)/"

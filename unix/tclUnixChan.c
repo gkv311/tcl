@@ -1860,8 +1860,16 @@ TclUnixWaitForFile(
 	 * Wait for the event or a timeout.
 	 */
 
+#ifdef __EMSCRIPTEN__
+    /*
+     * Call select() with NULL for the exceptfds parameter as Emscripten throws an assert exception otherwise.
+     */
+	numFound = select(fd + 1, &readableMask, &writableMask,
+		NULL, timeoutPtr);
+#else
 	numFound = select(fd + 1, &readableMask, &writableMask,
 		&exceptionMask, timeoutPtr);
+#endif
 	if (numFound == 1) {
 	    if (FD_ISSET(fd, &readableMask)) {
 		SET_BITS(result, TCL_READABLE);

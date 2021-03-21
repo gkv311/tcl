@@ -341,9 +341,9 @@ AC_CHECK_FUNC(memmove, , [
 #	the original string is empty.
 #--------------------------------------------------------------------
 
-SC_TCL_CHECK_BROKEN_FUNC(strstr, [
-    exit(strstr("\0test", "test") ? 1 : 0);
-])
+#SC_TCL_CHECK_BROKEN_FUNC(strstr, [
+#    exit(strstr("\0test", "test") ? 1 : 0);
+#])
 
 #--------------------------------------------------------------------
 #	Check for strtoul function.  This is tricky because under some
@@ -351,10 +351,10 @@ SC_TCL_CHECK_BROKEN_FUNC(strstr, [
 #	pointer for the string "0".
 #--------------------------------------------------------------------
 
-SC_TCL_CHECK_BROKEN_FUNC(strtoul, [
-    char *term, *string = "0";
-    exit(strtoul(string,&term,0) != 0 || term != string+1);
-])
+#SC_TCL_CHECK_BROKEN_FUNC(strtoul, [
+#    char *term, *string = "0";
+#    exit(strtoul(string,&term,0) != 0 || term != string+1);
+#])
 
 #--------------------------------------------------------------------
 #	Check for various typedefs and provide substitutes if

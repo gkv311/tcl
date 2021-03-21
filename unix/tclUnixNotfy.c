@@ -1058,9 +1058,18 @@ Tcl_WaitForEvent(
 	}
 #else /* !TCL_THREADS */
 	tsdPtr->readyMasks = tsdPtr->checkMasks;
+#ifdef __EMSCRIPTEN__
+	/*
+	 * Call select() with NULL for the exceptfds parameter as Emscripten throws an assert exception otherwise.
+	*/
+	numFound = select(tsdPtr->numFdBits, &tsdPtr->readyMasks.readable,
+		&tsdPtr->readyMasks.writable, NULL,
+		timeoutPtr);
+#else
 	numFound = select(tsdPtr->numFdBits, &tsdPtr->readyMasks.readable,
 		&tsdPtr->readyMasks.writable, &tsdPtr->readyMasks.exception,
 		timeoutPtr);
+#endif
 
 	/*
 	 * Some systems don't clear the masks after an error, so we have to do

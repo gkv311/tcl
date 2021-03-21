@@ -262,7 +262,9 @@ struct passwd *
 TclpGetPwUid(
     uid_t uid)
 {
-#if !defined(TCL_THREADS)
+#if defined(__EMSCRIPTEN__)
+    return NULL;
+#elif !defined(TCL_THREADS)
     return getpwuid(uid);
 #else
     ThreadSpecificData *tsdPtr = TCL_TSD_INIT(&dataKey);
