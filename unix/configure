@@ -15129,7 +15129,7 @@ echo "${ECHO_T}$tcl_cv_strtoul_unbroken" >&6
   *" strtoul.$ac_objext"   | \
     "strtoul.$ac_objext "* | \
   *" strtoul.$ac_objext "* ) ;;
-  *) LIBOBJS="$LIBOBJS strtoul.$ac_objext" ;;
+  *) LIBOBJS___="$LIBOBJS strtoul.$ac_objext" ;;
 esac
 
 	USE_COMPAT=1

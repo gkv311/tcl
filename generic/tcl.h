@@ -1,4 +1,4 @@
-#ifdef TCL_WIDE_INT_IS_LONG
+#if defined(TCL_WIDE_INT_IS_LONG) && !defined(__LP64__)
 #undef TCL_WIDE_INT_IS_LONG /// TODO WASM
 #endif
 /*
